@@ -15,7 +15,7 @@ A Raspberry Pi mecanum wheel robot with camera.
 ### Purpose
 I am an Information Technology Instructor at [Western Nebraska Community College](https://www.wncc.edu). I teach Information Technology, CyberSecurity and Computer Science. Best job ever!
 
-I am working on assembling and then programming a Yahboom Raspblock.
+I am working on assembling and programming a Yahboom Raspblock.
 
 Visit our Facebook page: [Facebook WNCC IT Program](https://www.facebook.com/wnccitprogram/)
 
