@@ -7,7 +7,7 @@ rasp
 
 # Assembly
 
-[Assembly](https://github.com/itinstructor/Raspblock/blob/main/images/raspblock_01-11-2024.jpg)
+![Assembly](https://github.com/itinstructor/Raspblock/blob/main/images/raspblock_01-11-2024.jpg)
 
 ### Purpose
 I am an Information Technology Instructor at [Western Nebraska Community College](https://www.wncc.edu). I teach Information Technology, CyberSecurity and Computer Science. Best job ever!
