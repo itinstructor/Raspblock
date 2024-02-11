@@ -9,6 +9,8 @@ rasp
 
 ![Assembly](https://github.com/itinstructor/Raspblock/blob/main/images/raspblock_01-11-2024.jpg)
 
+02-11-2024
+
 ### Purpose
 I am an Information Technology Instructor at [Western Nebraska Community College](https://www.wncc.edu). I teach Information Technology, CyberSecurity and Computer Science. Best job ever!
 
