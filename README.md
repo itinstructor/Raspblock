@@ -5,6 +5,10 @@ rasp
 - [Raspblock Repository](http://www.yahboom.net/study/Raspblock)
 - [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
 
+# Assembly
+
+[Assembly](images/raspblock_01-11-2024.jpg)
+
 ### Purpose
 I am an Information Technology Instructor at [Western Nebraska Community College](https://www.wncc.edu). I teach Information Technology, CyberSecurity and Computer Science. Best job ever!
 
