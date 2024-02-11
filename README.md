@@ -4,6 +4,7 @@ A Raspberry Pi mecanum wheel robot with camera.
 
 - [Raspblock Repository](http://www.yahboom.net/study/Raspblock)
 - [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
+- [Learn About Mecammum Wheels](https://en.wikipedia.org/wiki/Mecanum_wheel)
 
 # Assembly
 
