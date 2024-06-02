@@ -9,12 +9,16 @@ a Raspberry Pi mecanum wheel robot with camera.
 
 ## Code
 
-- buzzer_test.py (test the Raspblock library to sound the onboard buzzer)
+- buzzer_test.py (Sound the onboard buzzer)
 - servo_test.py (Move the camera and tower servo)
 
 ## Assembly
 
-Step 1: Almost have everything together. 02-11-2024
+06-02-2024: Completely assembled, Pi boots, servo's work!
+
+![Assembled](./images/raspblock_assembled.jpg)
+
+02-11-2024 Almost have everything together. 
 
 ![Assembly](./images/raspblock_01-11-2024.jpg)
 
