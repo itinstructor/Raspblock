@@ -1,21 +1,25 @@
 # Raspblock
 
-A Raspberry Pi mecanum wheel robot with camera.
+I am working on assembling and programming a Yahboom Raspblock. This is
+a Raspberry Pi mecanum wheel robot with camera.
 
 - [Raspblock Repository](http://www.yahboom.net/study/Raspblock)
 - [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
 - [Learn About Mecammum Wheels](https://en.wikipedia.org/wiki/Mecanum_wheel)
 
-# Assembly
+## Code
 
-![Assembly](https://github.com/itinstructor/Raspblock/blob/main/images/raspblock_01-11-2024.jpg)
+- buzzer_test.py (test the Raspblock library to sound the onboard buzzer)
+- servo_test.py (Move the camera and tower servo)
 
-02-11-2024
+## Assembly
+
+Step 1: Almost have everything together. 02-11-2024
+
+![Assembly](./images/raspblock_01-11-2024.jpg)
 
 ### Purpose
 I am an Information Technology Instructor at [Western Nebraska Community College](https://www.wncc.edu). I teach Information Technology, CyberSecurity and Computer Science. Best job ever!
-
-I am working on assembling and programming a Yahboom Raspblock.
 
 Visit our Facebook page: [Facebook WNCC IT Program](https://www.facebook.com/wnccitprogram/)
 
