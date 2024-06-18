@@ -1,11 +1,22 @@
+"""
+    Name: ps4_test.py
+    Author: William A Loring
+    Created: 06/17/24
+    Purpose: Test the PS4 Gamepad with the Raspblock
+"""
+
+
 # Import the Controller class from the pyPS4Controller library
 from pyPS4Controller.controller import Controller
 
-# Define a custom controller class that inherits from the base Controller class
-class MyController(Controller):
 
-    # Initialize the controller object using arguments passed to the constructor
+class MyController(Controller):
+    """Custom controller class that inherits from the base Controller class"""
+
     def __init__(self, **kwargs):
+        """Initialize the controller object using arguments
+           passed to the constructor"""
+
         # Call the base class constructor to handle common initialization logic
         super().__init__(**kwargs)
 
@@ -16,6 +27,7 @@ class MyController(Controller):
     # Define a callback function that executes when the X button is released
     def on_x_release(self):
         print("Goodbye world! The X button has been released.")
+
 
 # Create an instance of the MyController class, specifying the connection interface
 # and disabling the use of ds4drv (if applicable)

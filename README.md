@@ -9,6 +9,9 @@ a Raspberry Pi mecanum wheel robot with camera.
 
 ## Code
 
+- ps4_yawhold.py - 06/17/24 (The PS4 controls forward, backward, left and right. Hooray!)
+- ps4_joystick_test.py - 06/17/24(print the joystick output)
+- ps4_test.py - 06/17/24
 - buzzer_test.py (Sound the onboard buzzer)
 - servo_test.py (Move the camera and tower servo)
 
