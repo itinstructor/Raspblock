@@ -1,3 +1,11 @@
+"""
+    Name: ps4_joystick_test.py
+    Author: William A Loring
+    Created: 06/17/24
+    Purpose: Test the PS4 joystick with the Raspblock
+"""
+
+
 from pyPS4Controller.controller import Controller
 
 

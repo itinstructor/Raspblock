@@ -1,5 +1,14 @@
+"""
+    Name: ps4_yawhold.py
+    Author: William A Loring
+    Created: 06/17/24
+    Purpose: Raspblock remote control with the Y axis held in place
+"""
+
+
 from pyPS4Controller.controller import Controller
-from Raspblock import Raspblock  # Import Raspblock drive library
+# Import Raspblock drive library
+from Raspblock import Raspblock
 from time import sleep
 import threading
 
@@ -7,9 +16,10 @@ import threading
 robot = Raspblock()
 
 
-# Define a custom controller class inheriting from the PS4 Controller class
-
 class MyController(Controller):
+    """Define a custom controller class inheriting from the
+       PS4 Controller class"""
+
     def __init__(self, **kwargs):
         # Initialize the Controller parent class
         super().__init__(**kwargs)
@@ -20,7 +30,8 @@ class MyController(Controller):
 
         # Create and start a daemon thread for continuous movement updates
         self.update_thread = threading.Thread(
-            target=self.update_movement_continuously)
+            target=self.update_movement_continuously
+        )
         # Set the thread as a daemon, when program exits, the thread stops
         self.update_thread.daemon = True
         # Start the thread
@@ -73,7 +84,8 @@ class MyController(Controller):
         robot.Speed_axis_Yawhold_control(self.Speed_axis_X, self.Speed_axis_Y)
 
 
-# Create an instance of MyController, connecting to the correct interface for the joystick
+# Create an instance of MyController, connecting to the correct interface
+# for the joystick
 controller = MyController(
     interface="/dev/input/js0",
     connecting_using_ds4drv=False
@@ -86,5 +98,4 @@ except KeyboardInterrupt:
     # Handle program interruption (e.g., Ctrl+C)
     print("Program interrupted by the user")
 finally:
-    # Print a message indicating the program exited cleanly
     print("Controller stopped and program exited cleanly")
