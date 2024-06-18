@@ -109,12 +109,14 @@ class Raspblock():
         # Extract the high and low bytes of the absolute value of Speed_axis_Y
         # High byte of Speed_axis_Y
         Speed_axis_YH = (abs(Speed_axis_Y) >> 8) & 0xff
-        Speed_axis_YL = abs(Speed_axis_Y) & 0xff  # Low byte of Speed_axis_Y
+        # Low byte of Speed_axis_Y
+        Speed_axis_YL = abs(Speed_axis_Y) & 0xff
 
         # Extract the high and low bytes of the absolute value of Speed_axis_Z
         # High byte of Speed_axis_Z
         Speed_axis_ZH = (abs(Speed_axis_Z) >> 8) & 0xff
-        Speed_axis_ZL = abs(Speed_axis_Z) & 0xff  # Low byte of Speed_axis_Z
+        # Low byte of Speed_axis_Z
+        Speed_axis_ZL = abs(Speed_axis_Z) & 0xff
 
         # Determine the direction of movement for each axis
         # 0 means positive movement, 1 means negative movement
@@ -218,7 +220,8 @@ class Raspblock():
         Length = 8  # Set the length of the command data to 8 bytes
         Speed_Wheel_Mode = 0x02  # Set the wheel speed control mode
 
-        # Get the absolute values of the speed for each wheel and ensure they fit in one byte (0-255)
+        # Get the absolute values of the speed for each wheel
+        # and ensure they fit in one byte (0-255)
         Speed_Wheel_A = abs(Speed_WheelA) & 0xff  # Speed for wheel A
         Speed_Wheel_B = abs(Speed_WheelB) & 0xff  # Speed for wheel B
         Speed_Wheel_C = abs(Speed_WheelC) & 0xff  # Speed for wheel C
@@ -256,22 +259,27 @@ class Raspblock():
         Speed_Wheel_C_direction = Wheel_C_direction << 2  # Shift left by 2 bits
         Speed_Wheel_D_direction = Wheel_D_direction << 3  # Shift left by 3 bits
 
-        Speed_wheel_direction = (Speed_Wheel_A_direction |
-                                 Speed_Wheel_B_direction |
-                                 Speed_Wheel_C_direction |
-                                 Speed_Wheel_D_direction)
+        Speed_wheel_direction = (
+            Speed_Wheel_A_direction |
+            Speed_Wheel_B_direction |
+            Speed_Wheel_C_direction |
+            Speed_Wheel_D_direction
+        )
 
         # Calculate the checksum for error detection
         # The checksum is the lower 8 bits of the sum of all the command bytes
-        Checknum = (Function + Length + Speed_Wheel_Mode + Speed_Wheel_A +
-                    Speed_Wheel_B + Speed_Wheel_C + Speed_Wheel_D + Speed_wheel_direction) & 0xff
+        Checknum = (
+            Function + Length + Speed_Wheel_Mode + Speed_Wheel_A +
+            Speed_Wheel_B + Speed_Wheel_C + Speed_Wheel_D + Speed_wheel_direction) & 0xff
 
         # Create the command byte array
-        # The command consists of a start sequence (0xFF, 0xFE), function code, length,
-        # mode, the speed values for each wheel, reserved bytes, the direction byte, and the checksum
-        Speed_Motion_CMD2 = [0xFF, 0xFE, Function, Length, Speed_Wheel_Mode, Speed_Wheel_A,
-                             Speed_Wheel_B, Speed_Wheel_C, Speed_Wheel_D, Speed_Wheel_Reserved1,
-                             Speed_Wheel_Reserved2, Speed_wheel_direction, Checknum]
+        # The command consists of a start sequence (0xFF, 0xFE),
+        # function code, length, mode, the speed values for each wheel,
+        # reserved bytes, the direction byte, and the checksum
+        Speed_Motion_CMD2 = [
+            0xFF, 0xFE, Function, Length, Speed_Wheel_Mode, Speed_Wheel_A,
+            Speed_Wheel_B, Speed_Wheel_C, Speed_Wheel_D, Speed_Wheel_Reserved1,
+            Speed_Wheel_Reserved2, Speed_wheel_direction, Checknum]
 
         # Write the command byte array to the serial port
         # This sends the speed control settings to the robot
@@ -328,9 +336,11 @@ class Raspblock():
         Position_disp_Z_direction = Position_disp_Z_direction << 2
 
         # Combine the direction bits into a single byte
-        Position_disp_direction = (Position_disp_X_direction |
-                                   Position_disp_Y_direction |
-                                   Position_disp_Z_direction)
+        Position_disp_direction = (
+            Position_disp_X_direction |
+            Position_disp_Y_direction
+            |
+            Position_disp_Z_direction)
 
         # Calculate the checksum for error detection
         # The checksum is the lower 8 bits of the sum of all the command bytes
@@ -358,13 +368,34 @@ class Raspblock():
         # Check if the switch state is valid (0 for off, 1 for on)
         if switch_state == 0 or switch_state == 1:
             # Calculate the checksum for error detection
-            # The checksum is the lower 8 bits of the sum of the function code, length, and switch state
+            # The checksum is the lower 8 bits of the sum of the function
+            #  code, length, and switch state
             Checknum = (Function + Length + switch_state) & 0xff
 
             # Create the command byte array
-            # The command consists of a start sequence (0xFF, 0xFE), function code, length, switch state, and checksum
+            # The command consists of a start sequence (0xFF, 0xFE), function code,
+            # length, switch state, and checksum
             Buzzer_CMD = [0xFF, 0xFE, Function, Length, switch_state, Checknum]
 
             # Write the command byte array to the serial port
             # This sends the buzzer control settings to the robot
             self.ser.write(bytes(Buzzer_CMD))
+
+# ----------------------------- BOARD INFO ------------------------------- #
+    def BoardData_Get(self, index):
+        Function = 5  # Function code for the command
+        Length = 1  # Length of the data to be read
+
+        # Computes a checksum by summing Function, Length, and index,
+        # then performing a bitwise AND with 0xff
+        # to ensure the result is a single byte.
+        Checknum = (Function + Length + index) & 0xff
+
+        # Creates a list of bytes to send, beginning with 0xFF and 0xFE
+        # as header bytes, followed by Function, Length, index,
+        # and the checksum Checknum.
+        BoardData_CMD = [0xFF, 0xFE, Function, Length,
+                         index, Checknum]
+        # Converts the command list to a bytes object
+        # and writes it to the serial port.
+        self.ser.write(bytes(BoardData_CMD))

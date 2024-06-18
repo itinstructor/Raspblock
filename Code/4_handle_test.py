@@ -70,9 +70,7 @@ def stop_thread(thread):
     _async_raise(thread.ident, SystemExit)
 
 
-# -
 # Define the Remote_thread function
-
 def Remote_thread():
     # Infinite loop to continuously check the controller buttons
     while True:
@@ -86,9 +84,8 @@ def Remote_thread():
         # Wait for 10 milliseconds before checking again
         time.sleep(0.01)
 
+
 # Define the stop_thread function to stop a given thread
-
-
 def stop_thread(thread):
     # Raise a SystemExit exception in the thread to stop it
     _async_raise(thread.ident, SystemExit)

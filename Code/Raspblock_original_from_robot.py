@@ -63,6 +63,23 @@ class Raspblock():
 #         print(bytes(Servo_CMD))
         self.ser.write(bytes(Servo_CMD))
 
+    def Servo_control_single(self, index, angle):
+        Function = 2
+        Length = 3
+        if angle < 500:
+            angle = 500
+        elif angle > 2500:
+            angle = 2500
+
+        Servo_H = (angle >> 8) & 0x00ff
+        Servo_L = angle & 0x00ff
+
+        Checknum = (Function + Length + index + Servo_H + Servo_L) & 0xff
+        Servo_CMD = [0xFF, 0xFE, Function, Length,
+                     index, Servo_H, Servo_L, Checknum]
+
+        self.ser.write(bytes(Servo_CMD))
+
     def Speed_axis_control(self, Speed_axis_X, Speed_axis_Y, Speed_axis_Z):
         Function = 3
         Length = 8
@@ -181,21 +198,21 @@ class Raspblock():
         Position_disp_ZL = abs(Position_disp_Z) & 0x00ff
 
         if (Position_disp_X < 0):
-            Position_disp_X_direction = 0
-        else:
             Position_disp_X_direction = 1
-        if (Position_disp_Y < 0):
-            Position_disp_Y_direction = 0
         else:
+            Position_disp_X_direction = 0
+        if (Position_disp_Y < 0):
             Position_disp_Y_direction = 1
+        else:
+            Position_disp_Y_direction = 0
         if (Position_disp_Z < 0):
             Position_disp_Z_direction = 0
         else:
             Position_disp_Z_direction = 1
 
-        Position_disp_X_direction = Position_disp_X_direction << 0  # 0为正向移动,0x01为负向移动
+        Position_disp_X_direction = Position_disp_X_direction << 2  # 0为正向移动,0x01为负向移动
         Position_disp_Y_direction = Position_disp_Y_direction << 1  # 0为正向移动,0x02为负向移动
-        Position_disp_Z_direction = Position_disp_Z_direction << 2  # 0为正向转动,0x04为负向转动
+        Position_disp_Z_direction = Position_disp_Z_direction << 0  # 0为正向转动,0x04为负向转动
 
         Position_disp_direction = Position_disp_X_direction | Position_disp_Y_direction | Position_disp_Z_direction
         Checknum = (Function + Length + Position_disp_Mode + Position_disp_XH + Position_disp_XL + Position_disp_YH +
@@ -213,3 +230,10 @@ class Raspblock():
             Buzzer_CMD = [0xFF, 0xFE, Function, Length, switch_state, Checknum]
     #         print(bytes(Servo_CMD))
             self.ser.write(bytes(Buzzer_CMD))
+
+    def BoardData_Get(self, index):
+        Function = 5
+        Length = 1
+        Checknum = (Function + Length + index) & 0xff
+        BoardData_CMD = [0xFF, 0xFE, Function, Length, index, Checknum]
+        self.ser.write(bytes(BoardData_CMD))
