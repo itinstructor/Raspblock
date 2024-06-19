@@ -369,7 +369,7 @@ class Raspblock():
         if switch_state == 0 or switch_state == 1:
             # Calculate the checksum for error detection
             # The checksum is the lower 8 bits of the sum of the function
-            #  code, length, and switch state
+            # code, length, and switch state
             Checknum = (Function + Length + switch_state) & 0xff
 
             # Create the command byte array
