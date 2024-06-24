@@ -373,8 +373,8 @@ class Raspblock():
             Checknum = (Function + Length + switch_state) & 0xff
 
             # Create the command byte array
-            # The command consists of a start sequence (0xFF, 0xFE), function code,
-            # length, switch state, and checksum
+            # The command consists of a start sequence (0xFF, 0xFE), 
+            # function code, length, switch state, and checksum
             Buzzer_CMD = [0xFF, 0xFE, Function, Length, switch_state, Checknum]
 
             # Write the command byte array to the serial port
